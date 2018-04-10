@@ -32,3 +32,4 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Monday 9:30pm** Going to finish the night by getting a baseline 'hello world' React app working and push it to GitHub.
 
+**Monday 10pm** Done for the night. Read up on `fetch` and how adding headers works there. Proof of concept in the little app.
