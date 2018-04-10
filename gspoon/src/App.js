@@ -4,6 +4,9 @@ import './App.css';
 
 class App extends Component {
   render() {
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then(response => response.json())
+      .then(json => console.log(json));
     return (
       <div className="App">
         <header className="App-header">
