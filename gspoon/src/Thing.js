@@ -25,7 +25,6 @@ class Thing extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        console.log("Thing mounted!");
         fetch('https://jsonplaceholder.typicode.com/posts/1')
             .then(response => response.json())
             .then(json => {

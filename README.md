@@ -36,4 +36,8 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Tuesday 7pm** Playing with the hello world app, kicking the react tires. Hey I can load it on my phone by hitting the local IP!
 
-**Tuesday 7:40pm** Got a separate component to work, loading data from network and showing it. Had trouble with unit tests because network data load completed after the component was unmounted, which caused `setState` to error. Use a `this._isMounted` variable to guard.
+**Tuesday 7:40pm** Got a separate component to work, loading data from network and showing it. Had trouble with unit tests because network data load completed after the component was unmounted, which caused `setState` to error. Use a `this._isMounted` variable to guard. (done for now)
+
+**Tuesday 9:50pm** Breaking out component model: floor plan, checks, items, etc.
+
+**Tuesday 10:50pm** Got App component to use re-useable functions to hit API and get data back using fetch with Authorization. JS module exports is wonky.

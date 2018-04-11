@@ -1,17 +1,47 @@
 import React, { Component } from 'react';
-import Thing from './Thing';
+import Floorplan from './Floorplan';
+import { getList } from './api';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.fetchTables = this.fetchTables.bind(this);
+    this._isMounted = false; // placate tests which unload before data arrives
+    this.state = {
+      tables: undefined
+    }
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  fetchTables() {
+    getList("/tables")
+      .then((json) => {
+          if (this._isMounted) {
+            this.setState(() => {
+                return {
+                    tables: json
+                }
+            });
+          }               
+      });
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    this.fetchTables();
+
+  }
+  
   render() {
-    return (
+    console.log("state:", this.state);
+    return (      
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Thing />
+        <Floorplan />
+        
       </div>
     );
   }
