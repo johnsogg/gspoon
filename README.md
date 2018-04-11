@@ -33,3 +33,7 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 **Monday 9:30pm** Going to finish the night by getting a baseline 'hello world' React app working and push it to GitHub.
 
 **Monday 10pm** Done for the night. Read up on `fetch` and how adding headers works there. Proof of concept in the little app.
+
+**Tuesday 7pm** Playing with the hello world app, kicking the react tires. Hey I can load it on my phone by hitting the local IP!
+
+**Tuesday 7:40pm** Got a separate component to work, loading data from network and showing it. Had trouble with unit tests because network data load completed after the component was unmounted, which caused `setState` to error. Use a `this._isMounted` variable to guard.
