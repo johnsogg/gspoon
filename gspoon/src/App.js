@@ -8,9 +8,10 @@ class App extends Component {
   constructor() {
     super();
     this.fetchTables = this.fetchTables.bind(this);
+    this.handlePickTable = this.handlePickTable.bind(this);
     this._isMounted = false; // placate tests which unload before data arrives
     this.state = {
-      tables: undefined
+      tables: []
     }
   }
   componentWillUnmount() {
@@ -30,6 +31,11 @@ class App extends Component {
       });
   }
 
+  handlePickTable(evt) {
+    evt.preventDefault();
+    console.log("table picked!");
+  }
+
   componentDidMount() {
     this._isMounted = true;
     this.fetchTables();
@@ -37,10 +43,9 @@ class App extends Component {
   }
   
   render() {
-    console.log("state:", this.state);
     return (      
       <div className="App">
-        <Floorplan />
+        <Floorplan tables={this.state.tables} handlePickTable={this.handlePickTable}/>
         
       </div>
     );

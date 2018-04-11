@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
 
 class Floorplan extends Component {
     render() {
         return (
             <div>
-                <p>Floor Plan!</p>
+                <h1>Tables</h1>
+                <form>
+                {
+                    this.props.tables.map(table => <button key={table.id} onClick={this.props.handlePickTable}>{table.number}</button>)
+                }
+                </form>
             </div>
         );
     }
