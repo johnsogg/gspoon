@@ -52,6 +52,8 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Wednesday 11:30pm** Can identify the checks for a given table, pull out the current one (if there is one) and send it to a `<Check>` component. Nice.
 
-Time so far: 6h:00m
-
 **Thursday 1pm** Just continuing with building UI elements, having them show when appropriate, getting data from api each time.
+
+Time so far: 6h:30m
+
+**Thursday 2:20pm** Same.

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getObject } from './api';
+import AddItem from './AddItem';
 
 class Check extends Component {
 
@@ -15,10 +16,22 @@ class Check extends Component {
     render() {
         console.log('Show check:', this.props.check);
         return (
-            <div>
-                {this.state.details && <p>{this.state.details.dateCreated}</p>}
+            <div className="checkData">
+                {this.hasAllData() 
+                    ? this.state.details.orderedItems.map((itm) => <p key={itm.id}>{itm.id}</p>)
+                    : <p>No items yet</p>
+                }
+                <AddItem handleAddItem={this.handleAddItem}/>
             </div>
         );
+    }
+
+    // -------------------------------------------------------------------------------- Helpers
+
+    hasAllData = () => {
+        return this.state.details 
+            && this.state.details.orderedItems 
+            && this.state.details.orderedItems.length;
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
@@ -44,7 +57,10 @@ class Check extends Component {
 
 
     // -------------------------------------------------------------------------------- Event handler methods
-
+    handleAddItem = (evt) => {
+        evt.preventDefault();
+        console.log('add item!');
+    }
     
 }
 
