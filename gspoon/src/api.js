@@ -14,6 +14,15 @@ export function getList(path) {
         }).then(response => response.json());
 }
 
+export function getObject(path) {
+    return fetch(makeUrl(path), {
+        headers: {
+            'Authorization': auth
+        },
+        method: 'GET'
+        }).then(response => response.json());
+}
+
 export function postData(path, msg) {
     return fetch(makeUrl(path), {
         headers: {

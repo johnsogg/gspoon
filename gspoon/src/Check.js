@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getList, postData } from './api';
+import { getObject } from './api';
 
 class Check extends Component {
 
@@ -8,15 +8,15 @@ class Check extends Component {
         super(props);
         this._isMounted = false;
         this.state = {
-            // TODO
+            details: undefined
         };
     }
 
     render() {
-        console.log('check:', this.props.check);
+        console.log('Show check:', this.props.check);
         return (
             <div>
-                <p>My check:</p>
+                {this.state.details && <p>{this.state.details.dateCreated}</p>}
             </div>
         );
     }
@@ -24,7 +24,16 @@ class Check extends Component {
     // -------------------------------------------------------------------------------- Lifecycle methods
     componentDidMount() {
         this._isMounted = true;
-
+        getObject(`/checks/${this.props.check.id}`)
+            .then((json) => {
+                if (this._isMounted) {
+                    this.setState(() => {
+                        return {
+                            details: json
+                        }
+                    });
+                }
+            });
     }
 
     componentWillUnmount() {

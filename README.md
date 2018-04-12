@@ -50,4 +50,8 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Wednesday 9:50pm** Resisting the temptation to optimize. The API is simple and straightforward, though it lacks some calls that I'd like. For example, "give me only checks for table X from today". Its all good, I'll just abuse the network.
 
-Time so far: 5h:20m
+**Wednesday 11:30pm** Can identify the checks for a given table, pull out the current one (if there is one) and send it to a `<Check>` component. Nice.
+
+Time so far: 6h:00m
+
+**Thursday 1pm** Just continuing with building UI elements, having them show when appropriate, getting data from api each time.
