@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getObject } from './api';
+import { getObject, putData } from './api';
 import AddItem from './AddItem';
 
 class Check extends Component {
@@ -18,7 +18,7 @@ class Check extends Component {
         return (
             <div className="checkData">
                 {this.hasAllData() 
-                    ? this.state.details.orderedItems.map((itm) => <p key={itm.id}>{itm.id}</p>)
+                    ? this.state.details.orderedItems.map((itm) => <p key={itm.id}>{this.getItemInfo(itm)}</p>)
                     : <p>No items yet</p>
                 }
                 <AddItem menu={this.props.menu} handleAddItem={this.handleAddItem}/>
@@ -32,6 +32,11 @@ class Check extends Component {
         return this.state.details 
             && this.state.details.orderedItems 
             && this.state.details.orderedItems.length;
+    }
+
+    getItemInfo = (itm) => {
+        const menuItem = this.props.menu.find((i) => i.id === itm.itemId);
+        return menuItem ? <p>{menuItem.name}</p> : <p>Lost Item!</p>
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
@@ -54,12 +59,29 @@ class Check extends Component {
     }
 
     // -------------------------------------------------------------------------------- Data methods
-
+    addItemToCheck = (itm) => {
+        const msg = {
+            'itemId': itm.id
+        }
+        putData(`/checks/${this.props.check.id}/addItem`, msg)
+            .then((json) => {
+                if (this._isMounted) {
+                    this.setState((prevState) => {
+                        const prevDetails = prevState.details
+                        prevDetails.orderedItems = prevDetails.orderedItems.concat(json);
+                        return {
+                            details: prevDetails
+                        }
+                    });
+                }
+            });
+    }
 
     // -------------------------------------------------------------------------------- Event handler methods
     handleAddItem = (evt, itm) => {
         evt.preventDefault();
         console.log('add item:', itm);
+        this.addItemToCheck(itm);
     }
     
 }

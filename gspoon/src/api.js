@@ -33,3 +33,14 @@ export function postData(path, msg) {
         body: JSON.stringify(msg),
         }).then(response => response.json());
 }
+
+export function putData(path, msg) {
+    return fetch(makeUrl(path), {
+        headers: {
+            'Authorization': auth,
+            'content-type': 'application/json'
+        },
+        method: 'PUT',
+        body: JSON.stringify(msg),
+        }).then(response => response.json());
+}

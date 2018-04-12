@@ -56,4 +56,4 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 Time so far: 6h:30m
 
-**Thursday 2:20pm** Same.
+**Thursday 2:20pm** Same. Fetching menu in the app and passing it around to components that need it, since (like the table list) this should not change frequently like checks.
