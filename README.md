@@ -56,6 +56,8 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Thursday 2:20pm** Same. Fetching menu in the app and passing it around to components that need it, since (like the table list) this should not change frequently like checks. Can show the added items in the check order list.
 
-Time so far: 7h:30m
-
 **Thursday 3:20pm** Now need to be able to void existing order items.
+
+**Thursday 4:50pm** Voiding works, can pick thing to void in item list, it sends request to the server and client whacks data as appropriate and UI changes smoothly. Absolutely no error checking or any such frippery! Obviously that'd need to change, but as a prototype this is OK.
+
+Time so far: 8h:50m
