@@ -56,12 +56,20 @@ class App extends Component {
     });
   }
 
-  
+  handleDismissAll = (evt) => { // use newfangled syntax to avoid the yucky bind(this) thing
+    evt.preventDefault();
+    this.setState( () => {
+      return {
+        topComponent: 'Floorplan'
+      }
+    });
+  }
+
   render() {
     return (      
       <div className="App">
         {this.state.topComponent === 'Floorplan' && <Floorplan tables={this.state.tables} handlePickTable={this.handlePickTable}/>}
-        {this.state.topComponent === 'Table' && <Table table={this.state.currentTable}/>}
+        {this.state.topComponent === 'Table' && <Table back={this.handleDismissAll} table={this.state.currentTable}/>}
       </div>
     );
   }
