@@ -12,13 +12,15 @@ class App extends Component {
     this.state = {
       topComponent: 'Floorplan',
       currentTable: undefined,
-      tables: []
+      tables: [],
+      menu: []
     }
   }
   // -------------------------------------------------------------------------------- Lifecycle methods
   componentDidMount() {
     this._isMounted = true;
     this.fetchTables();
+    this.fetchMenu();
 
   }
 
@@ -34,6 +36,19 @@ class App extends Component {
             this.setState(() => {
                 return {
                     tables: json
+                }
+            });
+          }               
+      });
+  }
+
+  fetchMenu = () => {
+    getList("/items")
+      .then((json) => {
+          if (this._isMounted) {
+            this.setState(() => {
+                return {
+                    menu: json
                 }
             });
           }               
@@ -64,7 +79,7 @@ class App extends Component {
     return (      
       <div className="App">
         {this.state.topComponent === 'Floorplan' && <Floorplan tables={this.state.tables} handlePickTable={this.handlePickTable}/>}
-        {this.state.topComponent === 'Table' && <Table back={this.handleDismissAll} table={this.state.currentTable}/>}
+        {this.state.topComponent === 'Table' && <Table menu={this.state.menu} back={this.handleDismissAll} table={this.state.currentTable}/>}
       </div>
     );
   }

@@ -67,7 +67,7 @@ class Table extends Component {
                 <h1>Table {this.props.table.number}</h1>
                 <p>{this.state.checks.length} checks</p>
                 {
-                    this.state.openCheck ? <Check check={this.state.openCheck} /> : <button onClick={this.handlePickTable}>New Check</button>
+                    this.state.openCheck ? <Check menu={this.props.menu} check={this.state.openCheck} /> : <button onClick={this.handlePickTable}>New Check</button>
                 }
             </div>
         );

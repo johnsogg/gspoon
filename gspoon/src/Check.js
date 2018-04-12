@@ -21,7 +21,7 @@ class Check extends Component {
                     ? this.state.details.orderedItems.map((itm) => <p key={itm.id}>{itm.id}</p>)
                     : <p>No items yet</p>
                 }
-                <AddItem handleAddItem={this.handleAddItem}/>
+                <AddItem menu={this.props.menu} handleAddItem={this.handleAddItem}/>
             </div>
         );
     }
@@ -57,9 +57,9 @@ class Check extends Component {
 
 
     // -------------------------------------------------------------------------------- Event handler methods
-    handleAddItem = (evt) => {
+    handleAddItem = (evt, itm) => {
         evt.preventDefault();
-        console.log('add item!');
+        console.log('add item:', itm);
     }
     
 }

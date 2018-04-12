@@ -16,9 +16,7 @@ class AddItem extends Component {
         
         return (
             <div>
-                <button onClick={this.props.handleAddItem}>Hamburger</button><br />
-                <button onClick={this.props.handleAddItem}>Salad</button><br />
-                <button onClick={this.props.handleAddItem}>Beer</button><br />
+                { this.props.menu.map((menuItem) => this.makeItemButton(menuItem)) }
             </div>
         );
     }
@@ -36,6 +34,14 @@ class AddItem extends Component {
 
     // -------------------------------------------------------------------------------- Event handler methods
 
+    // -------------------------------------------------------------------------------- Helpers
+    makeItemButton = (itm) => {
+        return (
+            <span>
+                <button key={itm.id} onClick={(evt) => this.props.handleAddItem(evt, itm)}>{itm.name}</button><br />
+            </span>
+        );
+    }
 }
 
 export default AddItem;
