@@ -8,10 +8,6 @@ class App extends Component {
   constructor() {
     super();
 
-    // methods bound to this
-    this.fetchTables        = this.fetchTables.bind(this);
-    this.handlePickTable    = this.handlePickTable.bind(this);
-
     this._isMounted = false; // placate tests which unload before data arrives
     this.state = {
       topComponent: 'Floorplan',
@@ -31,7 +27,7 @@ class App extends Component {
   }
 
   // -------------------------------------------------------------------------------- Data methods
-  fetchTables() {
+  fetchTables = () => {
     getList("/tables")
       .then((json) => {
           if (this._isMounted) {
@@ -44,10 +40,9 @@ class App extends Component {
       });
   }
 
-    // -------------------------------------------------------------------------------- Event handler methods
-  handlePickTable(evt, table) {
+  // -------------------------------------------------------------------------------- Event handler methods
+  handlePickTable = (evt, table) => {
     evt.preventDefault();
-    console.log("table picked!", table);
     this.setState(() => {
       return {
         topComponent: 'Table',
@@ -56,7 +51,7 @@ class App extends Component {
     });
   }
 
-  handleDismissAll = (evt) => { // use newfangled syntax to avoid the yucky bind(this) thing
+  handleDismissAll = (evt) => { 
     evt.preventDefault();
     this.setState( () => {
       return {
