@@ -7,13 +7,18 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-    this.fetchTables = this.fetchTables.bind(this);
-    this.handlePickTable = this.handlePickTable.bind(this);
+
+    // methods bound to this
+    this.fetchTables        = this.fetchTables.bind(this);
+    this.handlePickTable    = this.handlePickTable.bind(this);
+
     this._isMounted = false; // placate tests which unload before data arrives
     this.state = {
+      topComponent: 'NutsFloorplan',
       tables: []
     }
   }
+
   componentWillUnmount() {
     this._isMounted = false;
   }
@@ -45,7 +50,7 @@ class App extends Component {
   render() {
     return (      
       <div className="App">
-        <Floorplan tables={this.state.tables} handlePickTable={this.handlePickTable}/>
+        <Floorplan top={this.state.topComponent} tables={this.state.tables} handlePickTable={this.handlePickTable}/>
         
       </div>
     );

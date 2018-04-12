@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 class Floorplan extends Component {
     render() {
+        console.log("floorplan props:", this.props);
         return (
-            <div>
+            <div className={this.props.top === 'Floorplan' ? "" : "hidden"}>
                 <h1>Tables</h1>
                 <form>
                 {
