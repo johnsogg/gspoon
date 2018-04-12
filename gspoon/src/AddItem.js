@@ -37,8 +37,8 @@ class AddItem extends Component {
     // -------------------------------------------------------------------------------- Helpers
     makeItemButton = (itm) => {
         return (
-            <span>
-                <button key={itm.id} onClick={(evt) => this.props.handleAddItem(evt, itm)}>{itm.name}</button><br />
+            <span key={itm.id}>
+                <button onClick={(evt) => this.props.handleAddItem(evt, itm)}>{itm.name}</button><br />
             </span>
         );
     }

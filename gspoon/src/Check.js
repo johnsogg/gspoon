@@ -14,7 +14,6 @@ class Check extends Component {
     }
 
     render() {
-        console.log('Show check:', this.props.check);
         return (
             <div className="checkData">
                 {this.hasAllData() 
@@ -36,7 +35,7 @@ class Check extends Component {
 
     getItemInfo = (itm) => {
         const menuItem = this.props.menu.find((i) => i.id === itm.itemId);
-        return menuItem ? <p>{menuItem.name}</p> : <p>Lost Item!</p>
+        return menuItem ? menuItem.name : 'Lost Item';
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
@@ -80,7 +79,6 @@ class Check extends Component {
     // -------------------------------------------------------------------------------- Event handler methods
     handleAddItem = (evt, itm) => {
         evt.preventDefault();
-        console.log('add item:', itm);
         this.addItemToCheck(itm);
     }
     
