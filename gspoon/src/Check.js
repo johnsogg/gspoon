@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getObject, putData } from './api';
 import AddItem from './AddItem';
+import Item from './Item';
 
 class Check extends Component {
 
@@ -17,9 +18,11 @@ class Check extends Component {
         return (
             <div className="checkData">
                 {this.hasAllData() 
-                    ? this.state.details.orderedItems.map((itm) => <p key={itm.id}>{this.getItemInfo(itm)}</p>)
+                    // ? this.state.details.orderedItems.map((itm) => <p key={itm.id}>{this.getItemInfo(itm)}</p>)
+                    ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm}/>)
                     : <p>No items yet</p>
                 }
+                <p><b>Pick from these items:</b></p>
                 <AddItem menu={this.props.menu} handleAddItem={this.handleAddItem}/>
             </div>
         );
@@ -41,6 +44,7 @@ class Check extends Component {
     // -------------------------------------------------------------------------------- Lifecycle methods
     componentDidMount() {
         this._isMounted = true;
+        console.log('summoning check with id:', this.props.check.id);
         getObject(`/checks/${this.props.check.id}`)
             .then((json) => {
                 if (this._isMounted) {
@@ -66,7 +70,7 @@ class Check extends Component {
             .then((json) => {
                 if (this._isMounted) {
                     this.setState((prevState) => {
-                        const prevDetails = prevState.details
+                        const prevDetails = prevState.details;
                         prevDetails.orderedItems = prevDetails.orderedItems.concat(json);
                         return {
                             details: prevDetails
@@ -76,10 +80,38 @@ class Check extends Component {
             });
     }
 
+    voidItemFromCheck = (itm) => {
+        if (this._isMounted) {
+            this.setState((prevState) => {
+                const prevDetails = prevState.details;
+                // rm current version from list
+                prevDetails.orderedItems = prevDetails.orderedItems.filter((oi) => oi.id !== itm.id);
+                // add itm back in, as it is voided
+                prevDetails.orderedItems = prevDetails.orderedItems.concat(itm);
+                return {
+                    details: prevDetails
+                }
+            });
+        }
+    }
+
     // -------------------------------------------------------------------------------- Event handler methods
     handleAddItem = (evt, itm) => {
         evt.preventDefault();
         this.addItemToCheck(itm);
+    }
+
+    maybeVoid = (evt, orderedItemId) => {
+        evt.preventDefault();
+
+        const msg = {
+            'orderedItemId': orderedItemId
+        }
+        putData(`/checks/${this.props.check.id}/voidItem`, msg)
+            .then((json) => {
+                console.log('voided:', json);
+                this.voidItemFromCheck(json);
+            });
     }
     
 }

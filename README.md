@@ -54,6 +54,8 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Thursday 1pm** Just continuing with building UI elements, having them show when appropriate, getting data from api each time.
 
-Time so far: 6h:30m
+**Thursday 2:20pm** Same. Fetching menu in the app and passing it around to components that need it, since (like the table list) this should not change frequently like checks. Can show the added items in the check order list.
 
-**Thursday 2:20pm** Same. Fetching menu in the app and passing it around to components that need it, since (like the table list) this should not change frequently like checks.
+Time so far: 7h:30m
+
+**Thursday 3:20pm** Now need to be able to void existing order items.
