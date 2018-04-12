@@ -14,7 +14,7 @@ class App extends Component {
 
     this._isMounted = false; // placate tests which unload before data arrives
     this.state = {
-      topComponent: 'NutsFloorplan',
+      topComponent: 'Floorplan',
       tables: []
     }
   }
@@ -50,7 +50,7 @@ class App extends Component {
   render() {
     return (      
       <div className="App">
-        <Floorplan top={this.state.topComponent} tables={this.state.tables} handlePickTable={this.handlePickTable}/>
+        {this.state.topComponent === 'Floorplan' && <Floorplan tables={this.state.tables} handlePickTable={this.handlePickTable}/>}
         
       </div>
     );
