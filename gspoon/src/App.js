@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Floorplan from './Floorplan';
+import Table from './Table';
 import { getList } from './api';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -15,6 +15,7 @@ class App extends Component {
     this._isMounted = false; // placate tests which unload before data arrives
     this.state = {
       topComponent: 'Floorplan',
+      currentTable: undefined,
       tables: []
     }
   }
@@ -47,6 +48,12 @@ class App extends Component {
   handlePickTable(evt, table) {
     evt.preventDefault();
     console.log("table picked!", table);
+    this.setState(() => {
+      return {
+        topComponent: 'Table',
+        currentTable: table
+      }
+    });
   }
 
   
@@ -54,7 +61,7 @@ class App extends Component {
     return (      
       <div className="App">
         {this.state.topComponent === 'Floorplan' && <Floorplan tables={this.state.tables} handlePickTable={this.handlePickTable}/>}
-        
+        {this.state.topComponent === 'Table' && <Table table={this.state.currentTable}/>}
       </div>
     );
   }
