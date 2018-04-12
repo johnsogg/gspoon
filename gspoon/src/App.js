@@ -18,11 +18,18 @@ class App extends Component {
       tables: []
     }
   }
+  // -------------------------------------------------------------------------------- Lifecycle methods
+  componentDidMount() {
+    this._isMounted = true;
+    this.fetchTables();
+
+  }
 
   componentWillUnmount() {
     this._isMounted = false;
   }
 
+  // -------------------------------------------------------------------------------- Data methods
   fetchTables() {
     getList("/tables")
       .then((json) => {
@@ -36,16 +43,12 @@ class App extends Component {
       });
   }
 
-  handlePickTable(evt) {
+    // -------------------------------------------------------------------------------- Event handler methods
+  handlePickTable(evt, table) {
     evt.preventDefault();
-    console.log("table picked!");
+    console.log("table picked!", table);
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-    this.fetchTables();
-
-  }
   
   render() {
     return (      

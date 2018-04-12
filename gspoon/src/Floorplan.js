@@ -7,7 +7,7 @@ class Floorplan extends Component {
                 <h1>Tables</h1>
                 <form>
                 {
-                    this.props.tables.map(table => <button key={table.id} onClick={this.props.handlePickTable}>{table.number}</button>)
+                    this.props.tables.map(table => <button key={table.id} onClick={(e) => this.props.handlePickTable(e, table)}>{table.number}</button>)
                 }
                 </form>
             </div>
