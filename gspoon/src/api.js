@@ -13,3 +13,14 @@ export function getList(path) {
         method: 'GET'
         }).then(response => response.json());
 }
+
+export function postData(path, msg) {
+    return fetch(makeUrl(path), {
+        headers: {
+            'Authorization': auth,
+            'content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(msg),
+        }).then(response => response.json());
+}

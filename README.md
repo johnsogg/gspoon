@@ -44,8 +44,10 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Wednesday 2:30pm** Can sneak half an hour in before office hours. Going to try to render table info in the floorplan component. (oh nice, got that working in like two minutes.)
 
-Time so far: 4h:10m
+
 
 **Wednesday 8:50pm** Working on a way to conditionally show a single component based on which is on 'top'. Since this is like a single-page phone app, that's important. Initial way to do it is to pass in a `top` value into each component and have them decide if they should show or not by setting their css class to `hidden`. But I don't like that solution because it spreads the responsibility down into places where it doesn't belong. I'm going to conditionally show from the top-level app instead.
 
 **Wednesday 9:50pm** Resisting the temptation to optimize. The API is simple and straightforward, though it lacks some calls that I'd like. For example, "give me only checks for table X from today". Its all good, I'll just abuse the network.
+
+Time so far: 5h:20m
