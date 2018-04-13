@@ -9,7 +9,8 @@ body {
 }
 
 .checkOpen {
-  
+  background: #beffa0;
+  color: black;
 }
 
 .checkClosed {

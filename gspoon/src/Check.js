@@ -41,8 +41,8 @@ class Check extends Component {
         return menuItem ? menuItem.name : 'Lost Item';
     }
 
-    getItem = (itmId) => {
-        return this.props.menu.find(i => i.id === itmId);
+    getItem = (mid) => {
+        return this.props.menu.find(i => i.id === mid);
     }
 
     checkStyle = () => {
@@ -52,18 +52,16 @@ class Check extends Component {
     }
 
     subtotal = () => {
-        let amt = 0.0;
+        let totPrice = 0.0;
         if (this.state.details) {
-            const menuIds = this.state.details.orderedItems
+            const menuItems = this.state.details.orderedItems
                 .filter( (itm) => { return !itm.voided; })
-                .map((itm) => { return itm.itemId });
-            console.log('menuIds:', menuIds);
-            const menuItems = menuIds.map(mid => this.getItem(mid));
-            console.log('menuItems:', menuItems);
-                //.map((id) => { this.props.menu.filter( (menuItem) => { menuItem.id === id }) });
-            
+                .map((itm) => { return itm.itemId })
+                .map(mid => this.props.menu.find(i => i.id === mid));
+            const addstuff = (acc, v) => acc + v.price;
+            totPrice = menuItems.reduce(addstuff, totPrice);
         }
-        return <p>${amt}</p>; // make nicer
+        return <p>${totPrice}</p>; // make nicer
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
