@@ -17,6 +17,7 @@ class Check extends Component {
     render() {
         return (
             <div className={this.checkStyle()}>
+                {this.subtotal()}
                 {this.hasAllData()
                     ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm} />)
                     : <p>No items yet</p>
@@ -40,10 +41,29 @@ class Check extends Component {
         return menuItem ? menuItem.name : 'Lost Item';
     }
 
+    getItem = (itmId) => {
+        return this.props.menu.find(i => i.id === itmId);
+    }
+
     checkStyle = () => {
         return (this.state.details && this.state.details.closed
             ? "checkClosed"
             : "checkOpen");
+    }
+
+    subtotal = () => {
+        let amt = 0.0;
+        if (this.state.details) {
+            const menuIds = this.state.details.orderedItems
+                .filter( (itm) => { return !itm.voided; })
+                .map((itm) => { return itm.itemId });
+            console.log('menuIds:', menuIds);
+            const menuItems = menuIds.map(mid => this.getItem(mid));
+            console.log('menuItems:', menuItems);
+                //.map((id) => { this.props.menu.filter( (menuItem) => { menuItem.id === id }) });
+            
+        }
+        return <p>${amt}</p>; // make nicer
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
