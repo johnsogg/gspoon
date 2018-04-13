@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { getList, postData } from './api';
-// import Check from './Check';
 
 class AddItem extends Component {
     // -------------------------------------------------------------------------------- Constructor & Render

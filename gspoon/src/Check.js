@@ -16,7 +16,7 @@ class Check extends Component {
 
     render() {
         return (
-            <div className="checkData">
+            <div className={this.checkStyle()}>
                 {this.hasAllData()
                     ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm} />)
                     : <p>No items yet</p>
@@ -38,6 +38,12 @@ class Check extends Component {
     getItemInfo = (itm) => {
         const menuItem = this.props.menu.find((i) => i.id === itm.itemId);
         return menuItem ? menuItem.name : 'Lost Item';
+    }
+
+    checkStyle = () => {
+        return (this.state.details && this.state.details.closed
+            ? "checkClosed"
+            : "checkOpen");
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getList, postData } from './api';
+import { getList, postData, putData } from './api';
 import Check from './Check';
 
 class Table extends Component {
@@ -19,9 +19,12 @@ class Table extends Component {
             <div>
                 <button onClick={this.props.back} >&lt; Back</button>
                 <h1>Table {this.props.table.number}</h1>
+
                 <p>{this.state.checks.length} checks</p>
                 {
-                    this.state.openCheck ? <Check menu={this.props.menu} check={this.state.openCheck} /> : <button onClick={this.handlePickTable}>New Check</button>
+                    this.state.openCheck
+                        ? <div><button onClick={this.handleCloseCheck}>Close Check</button><Check menu={this.props.menu} check={this.state.openCheck} /></div>
+                        : <button onClick={this.handlePickTable}>New Check</button>
                 }
             </div>
         );
@@ -59,6 +62,26 @@ class Table extends Component {
             });
     }
 
+    closeCheck = () => {
+        const checkId = this.state.openCheck.id;
+        const msg = {} // empty
+        putData(`/checks/${checkId}/close`, msg)
+            .then((json) => { this.markCheckClosed(json); });
+    }
+
+    // -------------------------------------------------------------------------------- Helpers
+
+    markCheckClosed = (newVal) => {
+        this.setState((prevState) => {
+            let myChecks = prevState.checks.filter((c) => { return c.id !== newVal.id });
+            myChecks = myChecks.concat(newVal);
+            return {
+                checks: myChecks,
+                openCheck: undefined
+            };
+        });
+    }
+
     // -------------------------------------------------------------------------------- Event handler methods
     handlePickTable = (evt) => {
         evt.preventDefault();
@@ -73,6 +96,12 @@ class Table extends Component {
                 }
             });
     }
+
+    handleCloseCheck = (evt) => {
+        evt.preventDefault();
+        this.closeCheck();
+    }
+
 }
 
 export default Table;

@@ -7,3 +7,12 @@ body {
 .hidden {
   display: none;
 }
+
+.checkOpen {
+  
+}
+
+.checkClosed {
+    background: #562a1f;
+    color: #d0d0d0;
+}

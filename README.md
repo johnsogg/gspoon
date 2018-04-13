@@ -60,4 +60,15 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 **Thursday 4:50pm** Voiding works, can pick thing to void in item list, it sends request to the server and client whacks data as appropriate and UI changes smoothly. Absolutely no error checking or any such frippery! Obviously that'd need to change, but as a prototype this is OK.
 
-Time so far: 8h:50m
+**Friday 3:40pm** Most of the functionality is there, but still some missing parts. Making a little punchlist of what's left to do for the spec, and then I can style it.
+
+- [ ] Be able to close a check
+- [ ] Get a subtotal price for a check (sum of non-voided ordered items)
+- [ ] View closed checks for a given table (give list, grouped by date)
+- [ ] Closed checks have tax and tip as separate line items (server computes,  they are part of the closed check object, `tax` and `tip`)
+
+Starting at the top!
+
+**Friday 4:20** Can close a check.
+
+Time so far: 9h:30m
