@@ -4,6 +4,7 @@ import Check from './Check';
 
 class Table extends Component {
 
+    // -------------------------------------------------------------------------------- Constructor & Render    
     constructor(props) {
         super(props);
         this._isMounted = false;
@@ -11,6 +12,19 @@ class Table extends Component {
             checks: [],
             openCheck: undefined
         };
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.props.back} >&lt; Back</button>
+                <h1>Table {this.props.table.number}</h1>
+                <p>{this.state.checks.length} checks</p>
+                {
+                    this.state.openCheck ? <Check menu={this.props.menu} check={this.state.openCheck} /> : <button onClick={this.handlePickTable}>New Check</button>
+                }
+            </div>
+        );
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
@@ -48,7 +62,7 @@ class Table extends Component {
     // -------------------------------------------------------------------------------- Event handler methods
     handlePickTable = (evt) => {
         evt.preventDefault();
-        
+
         const msg = {
             'tableId': this.props.table.id
         }
@@ -58,19 +72,6 @@ class Table extends Component {
                     this.fetchChecks(); // just force a reload, it should do the right thing
                 }
             });
-    }
-
-    render() {
-        return (
-            <div>
-                <button onClick={this.props.back} >&lt; Back</button>
-                <h1>Table {this.props.table.number}</h1>
-                <p>{this.state.checks.length} checks</p>
-                {
-                    this.state.openCheck ? <Check menu={this.props.menu} check={this.state.openCheck} /> : <button onClick={this.handlePickTable}>New Check</button>
-                }
-            </div>
-        );
     }
 }
 

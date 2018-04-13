@@ -17,13 +17,12 @@ class Check extends Component {
     render() {
         return (
             <div className="checkData">
-                {this.hasAllData() 
-                    // ? this.state.details.orderedItems.map((itm) => <p key={itm.id}>{this.getItemInfo(itm)}</p>)
-                    ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm}/>)
+                {this.hasAllData()
+                    ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm} />)
                     : <p>No items yet</p>
                 }
                 <p><b>Pick from these items:</b></p>
-                <AddItem menu={this.props.menu} handleAddItem={this.handleAddItem}/>
+                <AddItem menu={this.props.menu} handleAddItem={this.handleAddItem} />
             </div>
         );
     }
@@ -31,8 +30,8 @@ class Check extends Component {
     // -------------------------------------------------------------------------------- Helpers
 
     hasAllData = () => {
-        return this.state.details 
-            && this.state.details.orderedItems 
+        return this.state.details
+            && this.state.details.orderedItems
             && this.state.details.orderedItems.length;
     }
 
@@ -44,7 +43,6 @@ class Check extends Component {
     // -------------------------------------------------------------------------------- Lifecycle methods
     componentDidMount() {
         this._isMounted = true;
-        console.log('summoning check with id:', this.props.check.id);
         getObject(`/checks/${this.props.check.id}`)
             .then((json) => {
                 if (this._isMounted) {
@@ -109,11 +107,10 @@ class Check extends Component {
         }
         putData(`/checks/${this.props.check.id}/voidItem`, msg)
             .then((json) => {
-                console.log('voided:', json);
                 this.voidItemFromCheck(json);
             });
     }
-    
+
 }
 
 export default Check;
