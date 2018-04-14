@@ -17,3 +17,11 @@ body {
     background: #562a1f;
     color: #d0d0d0;
 }
+
+.emptySpace {
+    height: 300px;
+}
+
+.breathe {
+    padding: 0.5em;
+}

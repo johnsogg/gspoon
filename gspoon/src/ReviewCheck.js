@@ -24,7 +24,7 @@ class ReviewCheck extends Component {
         }
         return (
             <div>
-                <button onClick={(evt) => this.props.onOldCheck(evt, this.props.check)}>{updated} ${total.toFixed(2)}</button>
+                <button class="btn" onClick={(evt) => this.props.onOldCheck(evt, this.props.check)}>{updated} ${total.toFixed(2)}</button>
             </div>
         );
     }

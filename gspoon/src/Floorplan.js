@@ -1,18 +1,42 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 class Floorplan extends Component {
     render() {
         return (
             <div>
                 <h1>Tables</h1>
+                <div className="emptySpace" />
                 <form>
-                    {
-                        this.props.tables.map(table => <button key={table.id} onClick={(e) => this.props.handlePickTable(e, table)}>{table.number}</button>)
+                    {   
+                        this.renderTableGrid(this.props.tables)
                     }
                 </form>
             </div>
         );
     }
-}
 
+
+    renderTableGrid = (tables) => {
+        // given a bunch of tables, make a container with enough rows. each row contains five items
+        let rows = [];
+        for (let i=0; i < tables.length; i += 5) {
+            const row = (
+                <div className="row breathe">
+                {
+                    tables.slice(i, i+5).map(table => <div className="col"><Button color="primary" className="btn-block" key={table.id} onClick={(e) => this.props.handlePickTable(e, table)}>{table.number}</Button></div>)
+                }
+                </div>
+            );
+            rows.push(row);
+        }
+        return (
+            <div className="container">
+            {
+                rows
+            }
+            </div>
+        );
+    }
+}
 export default Floorplan;
