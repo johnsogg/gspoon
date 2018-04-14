@@ -75,5 +75,7 @@ Starting at the top!
 
 Time so far: 10h:00m
 
-**Friday 7:30**
+**Friday 9:10** Starting to add the check review features. Money values can be wonky, in IEEE754 awfulness like `$12.33824893`. Need to make or get a money laundering function to turn it into `$12.34`, rounded to the nearest penny. Spec doesn't say anything about that so I'll just assert that. Date values have similar unfriendliness.
+
+**Friday 10:20** Can now view closed checks per table. There is some flicker when loading different views because data loads asynchronously, so the view temporarily has stand-in or old information as the new stuff loads. One fix for that is to have a sentinel value in the state and only render once everything is loaded. Similar to the `this._isMounted`, could have a `this._isLoadingSomething`.
 

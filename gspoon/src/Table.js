@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getList, postData, putData } from './api';
 import Check from './Check';
+import ReviewCheck from './ReviewCheck';
+
 
 class Table extends Component {
 
@@ -11,6 +13,7 @@ class Table extends Component {
         this.state = {
             checks: [],
             openCheck: undefined,
+            oldCheck: undefined,
             review: false,
         };
     }
@@ -21,10 +24,12 @@ class Table extends Component {
                 <button onClick={this.props.back} >&lt; Back</button>
                 <h1>Table {this.props.table.number}</h1>
                 {
+                    // Sorry for this.
                     this.state.review
                         ? this.getReviewUI()
-                        : this.getCurrentUI()
-
+                        : this.state.oldCheck
+                            ? this.getOldCheckUI()
+                            : this.getCurrentUI()
                 }
 
             </div>
@@ -33,7 +38,11 @@ class Table extends Component {
 
     getReviewUI = () => {
         return (
-            <div><p>review</p></div>
+            <div>
+            {
+                this.state.checks.map( (chk) => { return <ReviewCheck onOldCheck={this.handleShowOldCheck} menu={this.props.menu} key={chk.id} check={chk}/> } )
+            }
+            </div>
         );
     }
 
@@ -48,7 +57,16 @@ class Table extends Component {
                 }
             </div>
         );
+    }
 
+    getOldCheckUI = () => {
+        
+        return (
+            <div>
+                <p>Closed Check from the past</p>
+                <Check menu={this.props.menu} check={this.state.oldCheck} />
+            </div>
+        );
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
@@ -69,7 +87,8 @@ class Table extends Component {
             this.setState(() => {
                 return {
                     checks: checks,
-                    openCheck: check
+                    openCheck: check,
+                    oldCheck: undefined
                 }
             });
         }
@@ -98,7 +117,8 @@ class Table extends Component {
             myChecks = myChecks.concat(newVal);
             return {
                 checks: myChecks,
-                openCheck: undefined
+                openCheck: undefined,
+                oldCheck: undefined
             };
         });
     }
@@ -125,12 +145,26 @@ class Table extends Component {
 
     handleHistory = (evt) => {
         evt.preventDefault();
-        console.log('history lesson');
         this.setState(() => {
             return {
-                review: true
+                review: true,
+                oldCheck: undefined
             }
         });
+    }
+
+    handleShowOldCheck = (evt, check) => {
+        evt.preventDefault();
+        console.log("ok show old check", check);
+        if (this._isMounted) {
+            this.setState(() => { 
+                return {
+                    review: false,
+                    openCheck: undefined,
+                    oldCheck: check
+                }
+            });
+        }
     }
 
 }

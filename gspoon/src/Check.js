@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getObject, putData } from './api';
 import AddItem from './AddItem';
 import Item from './Item';
+import { getOrderSubtotal } from './helpers';
 
 class Check extends Component {
 
@@ -17,7 +18,7 @@ class Check extends Component {
     render() {
         return (
             <div className={this.checkStyle()}>
-                {this.subtotal()}
+                {this.renderOrderSubtotal()}
                 {this.hasAllData()
                     ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm} />)
                     : <p>No items yet</p>
@@ -28,6 +29,13 @@ class Check extends Component {
         );
     }
 
+    renderOrderSubtotal = () => {
+        let totPrice = 0.0;
+        if (this.state.details) {
+            totPrice = getOrderSubtotal(this.state.details.orderedItems, this.props.menu);
+        }
+        return <p>Subtotal: ${totPrice}</p>; // make nicer
+    }
     // -------------------------------------------------------------------------------- Helpers
 
     hasAllData = () => {
@@ -49,19 +57,6 @@ class Check extends Component {
         return (this.state.details && this.state.details.closed
             ? "checkClosed"
             : "checkOpen");
-    }
-
-    subtotal = () => {
-        let totPrice = 0.0;
-        if (this.state.details) {
-            const menuItems = this.state.details.orderedItems
-                .filter( (itm) => { return !itm.voided; })
-                .map((itm) => { return itm.itemId })
-                .map(mid => this.props.menu.find(i => i.id === mid));
-            const addstuff = (acc, v) => acc + v.price;
-            totPrice = menuItems.reduce(addstuff, totPrice);
-        }
-        return <p>Subtotal: ${totPrice}</p>; // make nicer
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
