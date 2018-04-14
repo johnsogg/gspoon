@@ -73,8 +73,6 @@ Starting at the top!
 
 **Friday 4:50pm** Adds non-voided items in a check to show subtotal.
 
-Time so far: 10h:00m
-
 **Friday 9:10pm** Starting to add the check review features. Money values can be wonky, in IEEE754 awfulness like `$12.33824893`. Need to make or get a money laundering function to turn it into `$12.34`, rounded to the nearest penny. Spec doesn't say anything about that so I'll just assert that. Date values have similar unfriendliness.
 
 **Friday 10:20pm** Can now view closed checks per table. There is some flicker when loading different views because data loads asynchronously, so the view temporarily has stand-in or old information as the new stuff loads. One fix for that is to have a sentinel value in the state and only render once everything is loaded. Similar to the `this._isMounted`, could have a `this._isLoadingSomething`.
@@ -88,3 +86,6 @@ Time so far: 10h:00m
 
 The styling part could take a while, so I'll probably just time-box it and call it done when the timer goes off.
 
+Time so far: 11h:40m
+
+**Saturday 10am** Use `price.toFixed(2)` to format price, and installed `moment.js` to handle date formatting. Yarn is nice.

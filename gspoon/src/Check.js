@@ -41,7 +41,7 @@ class Check extends Component {
                 title = "Total";
             }
         }
-        return <p>{title}: ${totPrice}</p>; // make nicer
+        return <p>{title}: ${totPrice.toFixed(2)}</p>; // make nicer
     }
     // -------------------------------------------------------------------------------- Helpers
 

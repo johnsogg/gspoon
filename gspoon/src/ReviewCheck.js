@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getOrderSubtotal } from './helpers';
 import { getObject } from './api';
+import moment from 'moment'
 
 class ReviewCheck extends Component {
 
@@ -19,11 +20,11 @@ class ReviewCheck extends Component {
         if (this.state.details && this.state.details.orderedItems) {
             const sub = getOrderSubtotal(this.state.details.orderedItems, this.props.menu);
             total = sub + this.state.details.tax + this.state.details.tip;
-            updated = this.state.details.dateUpdated;
+            updated = moment(this.state.details.dateUpdated).format("MM/DD HH:mm");
         }
         return (
             <div>
-                <button onClick={(evt) => this.props.onOldCheck(evt, this.props.check)}>{updated} ${total}</button>
+                <button onClick={(evt) => this.props.onOldCheck(evt, this.props.check)}>{updated} ${total.toFixed(2)}</button>
             </div>
         );
     }
