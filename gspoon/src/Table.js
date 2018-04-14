@@ -41,7 +41,9 @@ class Table extends Component {
         return (
             <div>
             {
-                this.state.checks.map( (chk) => { return <ReviewCheck onOldCheck={this.handleShowOldCheck} menu={this.props.menu} key={chk.id} check={chk}/> } )
+                this.state.checks
+                    .filter( (chk) => { return chk.closed })
+                    .map( (chk) => { return <ReviewCheck onOldCheck={this.handleShowOldCheck} menu={this.props.menu} key={chk.id} check={chk}/> } )
             }
             </div>
         );
@@ -50,7 +52,7 @@ class Table extends Component {
     getCurrentUI = () => {
         return (
             <div>
-                <Button color="light" onClick={this.handleHistory}>Review {this.state.checks.length} past checks</Button>
+                <Button color="light" onClick={this.handleHistory}>Review {this.closedCheckCount()} past checks</Button>
                 {
                     this.state.openCheck
                         ? <div><Button color="danger" onClick={this.handleCloseCheck}>Close Check</Button><Check menu={this.props.menu} check={this.state.openCheck} /></div>
@@ -111,6 +113,10 @@ class Table extends Component {
     }
 
     // -------------------------------------------------------------------------------- Helpers
+
+    closedCheckCount = () => {
+        return this.state.checks.filter((chk) => { return chk.closed }).length
+    }
 
     markCheckClosed = (newVal) => {
         this.setState((prevState) => {

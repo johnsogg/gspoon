@@ -9,13 +9,16 @@ body {
 }
 
 .checkOpen {
-  background: #beffa0;
-  color: black;
+    border-width: 2px;
+    border-color: greenyellow;
+    border-style: solid;
+
 }
 
 .checkClosed {
-    background: #562a1f;
-    color: #d0d0d0;
+    border-width: 2px;
+    border-color: red;
+    border-style: solid;
 }
 
 .emptySpace {

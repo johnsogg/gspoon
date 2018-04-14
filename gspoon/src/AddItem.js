@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 class AddItem extends Component {
     // -------------------------------------------------------------------------------- Constructor & Render
@@ -11,10 +12,9 @@ class AddItem extends Component {
     }
 
     render() {
-        
         return (
             <div>
-                { this.props.menu.map((menuItem) => this.makeItemButton(menuItem)) }
+                {this.renderAddItemGrid(this.props.menu)}
             </div>
         );
     }
@@ -33,11 +33,33 @@ class AddItem extends Component {
     // -------------------------------------------------------------------------------- Event handler methods
 
     // -------------------------------------------------------------------------------- Helpers
+
     makeItemButton = (itm) => {
         return (
-            <span key={itm.id}>
-                <button onClick={(evt) => this.props.handleAddItem(evt, itm)}>{itm.name}</button><br />
-            </span>
+            <Button key={itm.id} outline color="success" className="btn-block" size="sm" onClick={(evt) => this.props.handleAddItem(evt, itm)}>{itm.name.toLowerCase()}</Button>
+        );
+    }
+
+    renderAddItemGrid = (menu) => {
+        // given a list of menu items, make a container with enough rows. each row contains numCols items
+        const numCols = 2;
+        let rows = [];
+        for (let i=0; i < menu.length; i += numCols) {
+            const row = (
+                <div key={'menuItemRow' + i} className="row">
+                {
+                    menu
+                        .slice(i, i+numCols)
+                        .map((menuItem) => {
+                            return <div className="col">{this.makeItemButton(menuItem)}</div>
+                        })
+                }
+                </div>
+            );
+            rows.push(row);
+        }
+        return (
+            <div className="container">{rows}</div>
         );
     }
 }

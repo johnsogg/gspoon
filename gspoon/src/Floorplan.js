@@ -23,9 +23,9 @@ class Floorplan extends Component {
         let rows = [];
         for (let i=0; i < tables.length; i += numCols) {
             const row = (
-                <div className="row breathe">
+                <div key={'tablerow' + i} className="row breathe">
                 {
-                    tables.slice(i, i+numCols).map(table => <div className="col"><Button color="primary" className="btn-block" key={table.id} onClick={(e) => this.props.handlePickTable(e, table)}>{table.number}</Button></div>)
+                    tables.slice(i, i+numCols).map(table => <div key={table.id} className="col"><Button color="primary" className="btn-block" onClick={(e) => this.props.handlePickTable(e, table)}>{table.number}</Button></div>)
                 }
                 </div>
             );
