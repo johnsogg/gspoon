@@ -64,18 +64,27 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 
 - [x] Be able to close a check
 - [x] Get a subtotal price for a check (sum of non-voided ordered items)
-- [ ] View closed checks for a given table (give list, grouped by date)
-- [ ] Closed checks have tax and tip as separate line items (server computes,  they are part of the closed check object, `tax` and `tip`)
+- [x] View closed checks for a given table (give list, grouped by date)
+- [x] Closed checks have tax and tip as separate line items (server computes,  they are part of the closed check object, `tax` and `tip`)
 
 Starting at the top!
 
-**Friday 4:20** Can close a check.
+**Friday 4:20pm** Can close a check.
 
-**Friday 4:50** Adds non-voided items in a check to show subtotal.
+**Friday 4:50pm** Adds non-voided items in a check to show subtotal.
 
 Time so far: 10h:00m
 
-**Friday 9:10** Starting to add the check review features. Money values can be wonky, in IEEE754 awfulness like `$12.33824893`. Need to make or get a money laundering function to turn it into `$12.34`, rounded to the nearest penny. Spec doesn't say anything about that so I'll just assert that. Date values have similar unfriendliness.
+**Friday 9:10pm** Starting to add the check review features. Money values can be wonky, in IEEE754 awfulness like `$12.33824893`. Need to make or get a money laundering function to turn it into `$12.34`, rounded to the nearest penny. Spec doesn't say anything about that so I'll just assert that. Date values have similar unfriendliness.
 
-**Friday 10:20** Can now view closed checks per table. There is some flicker when loading different views because data loads asynchronously, so the view temporarily has stand-in or old information as the new stuff loads. One fix for that is to have a sentinel value in the state and only render once everything is loaded. Similar to the `this._isMounted`, could have a `this._isLoadingSomething`.
+**Friday 10:20pm** Can now view closed checks per table. There is some flicker when loading different views because data loads asynchronously, so the view temporarily has stand-in or old information as the new stuff loads. One fix for that is to have a sentinel value in the state and only render once everything is loaded. Similar to the `this._isMounted`, could have a `this._isLoadingSomething`.
+
+**Friday 10:45pm** Done with those punchlist items. Going to punt on grouping closed checks by date, though I should probably order them by date. Remaining stuff to do:
+
+- [ ] Present closed checks by date
+- [ ] Show human-readable date and money strings
+- [ ] Styling
+- [ ] Clean up code & document somewhat.
+
+The styling part could take a while, so I'll probably just time-box it and call it done when the timer goes off.
 
