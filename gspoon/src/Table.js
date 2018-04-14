@@ -10,7 +10,8 @@ class Table extends Component {
         this._isMounted = false;
         this.state = {
             checks: [],
-            openCheck: undefined
+            openCheck: undefined,
+            review: false,
         };
     }
 
@@ -19,8 +20,27 @@ class Table extends Component {
             <div>
                 <button onClick={this.props.back} >&lt; Back</button>
                 <h1>Table {this.props.table.number}</h1>
+                {
+                    this.state.review
+                        ? this.getReviewUI()
+                        : this.getCurrentUI()
 
-                <p>{this.state.checks.length} checks</p>
+                }
+
+            </div>
+        );
+    }
+
+    getReviewUI = () => {
+        return (
+            <div><p>review</p></div>
+        );
+    }
+
+    getCurrentUI = () => {
+        return (
+            <div>
+                <button onClick={this.handleHistory}>Review {this.state.checks.length} past checks</button>
                 {
                     this.state.openCheck
                         ? <div><button onClick={this.handleCloseCheck}>Close Check</button><Check menu={this.props.menu} check={this.state.openCheck} /></div>
@@ -28,6 +48,7 @@ class Table extends Component {
                 }
             </div>
         );
+
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
@@ -100,6 +121,16 @@ class Table extends Component {
     handleCloseCheck = (evt) => {
         evt.preventDefault();
         this.closeCheck();
+    }
+
+    handleHistory = (evt) => {
+        evt.preventDefault();
+        console.log('history lesson');
+        this.setState(() => {
+            return {
+                review: true
+            }
+        });
     }
 
 }

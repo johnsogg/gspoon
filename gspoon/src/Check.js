@@ -61,7 +61,7 @@ class Check extends Component {
             const addstuff = (acc, v) => acc + v.price;
             totPrice = menuItems.reduce(addstuff, totPrice);
         }
-        return <p>${totPrice}</p>; // make nicer
+        return <p>Subtotal: ${totPrice}</p>; // make nicer
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods

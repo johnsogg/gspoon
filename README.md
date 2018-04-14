@@ -63,7 +63,7 @@ In this spec a check is either open or closed, but it seems there is a middle gr
 **Friday 3:40pm** Most of the functionality is there, but still some missing parts. Making a little punchlist of what's left to do for the spec, and then I can style it.
 
 - [x] Be able to close a check
-- [ ] Get a subtotal price for a check (sum of non-voided ordered items)
+- [x] Get a subtotal price for a check (sum of non-voided ordered items)
 - [ ] View closed checks for a given table (give list, grouped by date)
 - [ ] Closed checks have tax and tip as separate line items (server computes,  they are part of the closed check object, `tax` and `tip`)
 
@@ -71,4 +71,9 @@ Starting at the top!
 
 **Friday 4:20** Can close a check.
 
-Time so far: 9h:30m
+**Friday 4:50** Adds non-voided items in a check to show subtotal.
+
+Time so far: 10h:00m
+
+**Friday 7:30**
+
