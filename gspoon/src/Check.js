@@ -31,10 +31,15 @@ class Check extends Component {
 
     renderOrderSubtotal = () => {
         let totPrice = 0.0;
+        let title = "Subtotal";
         if (this.state.details) {
             totPrice = getOrderSubtotal(this.state.details.orderedItems, this.props.menu);
+            if (this.state.details.closed) {
+                totPrice = totPrice + this.state.details.tax + this.state.details.tip;
+                title = "Total";
+            }
         }
-        return <p>Subtotal: ${totPrice}</p>; // make nicer
+        return <p>{title}: ${totPrice}</p>; // make nicer
     }
     // -------------------------------------------------------------------------------- Helpers
 
