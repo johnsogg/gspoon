@@ -92,4 +92,4 @@ Time so far: 11h:40m
 
 **Saturday 2pm** Installed `reactstrap`, got it configured (needed to add references to various files, wasn't obvious what exactly to do from the onset). Now rendering table buttons using bootstrap, and have a bunch of space so the server's thumb can reach the buttons. Moving on to style the other stuff, should be smooth sailing now that I've figured out which way is up.
 
-
+**Saturday 3:45pm** The order entry area looks decent by now. They're bootstrap buttons, but changed the style so they look like plain text. When tapped the `danger` style kicks in and it glows red, because you just voided that item. Only a little bit more to do for styling. Need to make voided items look good.

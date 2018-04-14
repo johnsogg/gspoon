@@ -14,17 +14,24 @@ class Item extends Component {
 
     render() {
         const menuItem = this.getItem();
-        const buttonStyle = {
+        const activeItem = { // this is a reactstrap thing. Button needs an object to style it.
             border: 0, 
             solid:true, 
             transparent:true,
             color: '#000000',
         }
+        const voidedItem = {
+            border: 0,
+            solid: true,
+            transparent: true,
+            color: '#a0a0a0',
+            'text-decoration': 'line-through'
+        }
         return (
             <div>
                 { this.props.item.voided 
-                    ? <del>{menuItem.name}</del>
-                    : <Button outline color="danger" style={buttonStyle} onClick={(evt) => this.props.maybeVoid(evt, this.props.item.id)}>{menuItem.name.toLowerCase()} ${menuItem.price}</Button>
+                    ? <Button outline color="danger" style={voidedItem}>{menuItem.name.toLowerCase()} ${menuItem.price}</Button>
+                    : <Button outline color="danger" style={activeItem} onClick={(evt) => this.props.maybeVoid(evt, this.props.item.id)}>{menuItem.name.toLowerCase()} ${menuItem.price}</Button>
                 }
                 
             </div>
