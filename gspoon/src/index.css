@@ -34,3 +34,8 @@ body {
     padding: 0.5em;
     margin: 0.5em;
 }
+
+.orderList {
+    overflow-y: scroll;
+    height: 240px;
+}

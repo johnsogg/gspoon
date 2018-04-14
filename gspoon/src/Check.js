@@ -20,7 +20,7 @@ class Check extends Component {
             <div className={this.checkStyle()}>
                 {this.renderOrderSubtotal()}
                 {this.hasAllData()
-                    ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm} />)
+                    ? this.renderItems(this.state.details.orderedItems)
                     : <p>No items yet</p>
                 }
                 {
@@ -43,6 +43,24 @@ class Check extends Component {
         }
         return <p>{title}: ${totPrice.toFixed(2)}</p>; // make nicer
     }
+
+    renderItems = (orderedItems) => {
+        const items = orderedItems.map((itm) => {
+            return <Item 
+                maybeVoid={this.maybeVoid} 
+                check={this.props.check.id} 
+                key={itm.id} 
+                menu={this.props.menu} 
+                item={itm} />;
+            });
+
+        return (
+            <div className="orderList">
+                {items}
+            </div>
+        );
+    }
+
     // -------------------------------------------------------------------------------- Helpers
 
     hasAllData = () => {

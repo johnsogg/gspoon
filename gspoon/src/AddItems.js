@@ -14,7 +14,6 @@ class AddItems extends Component {
     render() {
         return (
             <div>
-                <p><b>Pick from these items:</b></p>
                 <AddItem menu={this.props.menu} handleAddItem={this.props.handleAddItem} />
             </div>
         );

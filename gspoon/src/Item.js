@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Button } from 'reactstrap';
 
 class Item extends Component {
 
@@ -14,11 +14,17 @@ class Item extends Component {
 
     render() {
         const menuItem = this.getItem();
+        const buttonStyle = {
+            border: 0, 
+            solid:true, 
+            transparent:true,
+            color: '#000000',
+        }
         return (
             <div>
                 { this.props.item.voided 
                     ? <del>{menuItem.name}</del>
-                    : <button onClick={(evt) => this.props.maybeVoid(evt, this.props.item.id)}>{menuItem.name} ${menuItem.price}</button>
+                    : <Button outline color="danger" style={buttonStyle} onClick={(evt) => this.props.maybeVoid(evt, this.props.item.id)}>{menuItem.name.toLowerCase()} ${menuItem.price}</Button>
                 }
                 
             </div>
