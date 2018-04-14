@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getList, postData, putData } from './api';
 import Check from './Check';
 import ReviewCheck from './ReviewCheck';
+import { Button } from 'reactstrap';
 
 
 class Table extends Component {
@@ -24,7 +25,7 @@ class Table extends Component {
                 <button onClick={this.props.back} >&lt; Back</button>
                 <h1>Table {this.props.table.number}</h1>
                 {
-                    // Sorry for this.
+                    // Sorry for this. Clarity can be a casualty of convenience :(
                     this.state.review
                         ? this.getReviewUI()
                         : this.state.oldCheck
@@ -49,11 +50,11 @@ class Table extends Component {
     getCurrentUI = () => {
         return (
             <div>
-                <button onClick={this.handleHistory}>Review {this.state.checks.length} past checks</button>
+                <Button color="light" onClick={this.handleHistory}>Review {this.state.checks.length} past checks</Button>
                 {
                     this.state.openCheck
-                        ? <div><button onClick={this.handleCloseCheck}>Close Check</button><Check menu={this.props.menu} check={this.state.openCheck} /></div>
-                        : <button onClick={this.handlePickTable}>New Check</button>
+                        ? <div><Button color="danger" onClick={this.handleCloseCheck}>Close Check</Button><Check menu={this.props.menu} check={this.state.openCheck} /></div>
+                        : <Button color="success" onClick={this.handlePickTable}>New Check</Button>
                 }
             </div>
         );

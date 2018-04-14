@@ -18,13 +18,14 @@ class Floorplan extends Component {
 
 
     renderTableGrid = (tables) => {
-        // given a bunch of tables, make a container with enough rows. each row contains five items
+        // given a bunch of tables, make a container with enough rows. each row contains numCols items
+        const numCols = 5;
         let rows = [];
-        for (let i=0; i < tables.length; i += 5) {
+        for (let i=0; i < tables.length; i += numCols) {
             const row = (
                 <div className="row breathe">
                 {
-                    tables.slice(i, i+5).map(table => <div className="col"><Button color="primary" className="btn-block" key={table.id} onClick={(e) => this.props.handlePickTable(e, table)}>{table.number}</Button></div>)
+                    tables.slice(i, i+numCols).map(table => <div className="col"><Button color="primary" className="btn-block" key={table.id} onClick={(e) => this.props.handlePickTable(e, table)}>{table.number}</Button></div>)
                 }
                 </div>
             );
