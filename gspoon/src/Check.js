@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getObject, putData } from './api';
-import AddItem from './AddItem';
+import AddItems from './AddItems';
 import Item from './Item';
 import { getOrderSubtotal } from './helpers';
 
@@ -23,8 +23,10 @@ class Check extends Component {
                     ? this.state.details.orderedItems.map((itm) => <Item maybeVoid={this.maybeVoid} check={this.props.check.id} key={itm.id} menu={this.props.menu} item={itm} />)
                     : <p>No items yet</p>
                 }
-                <p><b>Pick from these items:</b></p>
-                <AddItem menu={this.props.menu} handleAddItem={this.handleAddItem} />
+                {
+                    this.state.details && !this.state.details.closed && <AddItems menu={this.props.menu} handleAddItem={this.handleAddItem} />
+                }
+
             </div>
         );
     }
