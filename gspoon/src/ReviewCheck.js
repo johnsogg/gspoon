@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getOrderSubtotal } from './helpers';
 import { getObject } from './api';
 import moment from 'moment'
+import { Button } from 'reactstrap';
 
 class ReviewCheck extends Component {
 
@@ -24,7 +25,7 @@ class ReviewCheck extends Component {
         }
         return (
             <div>
-                <button class="btn" onClick={(evt) => this.props.onOldCheck(evt, this.props.check)}>{updated} ${total.toFixed(2)}</button>
+                <Button color="secondary" className="wideBtn" onClick={(evt) => this.props.onOldCheck(evt, this.props.check)}>{updated} ${total.toFixed(2)}</Button>
             </div>
         );
     }

@@ -22,6 +22,12 @@ body {
     height: 300px;
 }
 
+.wideBtn {
+    padding: 0.5em;
+    margin: 0.5em;
+    width: 80%;
+}
 .breathe {
     padding: 0.5em;
+    margin: 0.5em;
 }

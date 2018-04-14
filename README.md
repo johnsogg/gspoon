@@ -79,8 +79,8 @@ Starting at the top!
 
 **Friday 10:45pm** Done with those punchlist items. Going to punt on grouping closed checks by date, though I should probably order them by date. Remaining stuff to do:
 
-- [ ] Present closed checks by date
-- [ ] Show human-readable date and money strings
+- [x] Present closed checks by date
+- [x] Show human-readable date and money strings
 - [ ] Styling
 - [ ] Clean up code & document somewhat.
 
@@ -88,4 +88,8 @@ The styling part could take a while, so I'll probably just time-box it and call 
 
 Time so far: 11h:40m
 
-**Saturday 10am** Use `price.toFixed(2)` to format price, and installed `moment.js` to handle date formatting. Yarn is nice.
+**Saturday 10am** Use `price.toFixed(2)` to format price, and installed `moment.js` to handle date formatting. Yarn is nice. Now "just" need to do styling, cleanup, document, and then ship it!
+
+**Saturday 2pm** Installed `reactstrap`, got it configured (needed to add references to various files, wasn't obvious what exactly to do from the onset). Now rendering table buttons using bootstrap, and have a bunch of space so the server's thumb can reach the buttons. Moving on to style the other stuff, should be smooth sailing now that I've figured out which way is up.
+
+
