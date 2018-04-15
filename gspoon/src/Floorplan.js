@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
+// Floorplan shows the list of tables. If this was a 'real' app it would 
+// show the tables according to where they physically are on the floor.
 class Floorplan extends Component {
     render() {
         return (

@@ -4,6 +4,9 @@ import AddItems from './AddItems';
 import Item from './Item';
 import { getOrderSubtotal } from './helpers';
 
+// Check is a component that shows the order subtotal (or total for 
+// closed checks), a list of ordered items, and (if the check is 
+// open) a UI for adding more items.
 class Check extends Component {
 
     // -------------------------------------------------------------------------------- Constructor & Render

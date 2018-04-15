@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
+// Item represents a single ordered item, which might have been voided.
 class Item extends Component {
 
     // -------------------------------------------------------------------------------- Constructor & Render
@@ -51,11 +52,6 @@ class Item extends Component {
     componentWillUnmount() {
         this._isMounted = false;
     }
-
-    // -------------------------------------------------------------------------------- Data methods
-
-
-    // -------------------------------------------------------------------------------- Event handler methods
     
 }
 

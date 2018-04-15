@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Floorplan from './Floorplan';
 import Table from './Table';
-import { getList } from './api';
+import { getObject } from './api';
 import './App.css';
 
+// App is the top-level component for the Greasy Spoon app.
 class App extends Component {
     // -------------------------------------------------------------------------------- Constructor & Render
     constructor() {
@@ -41,7 +42,7 @@ class App extends Component {
 
     // -------------------------------------------------------------------------------- Data methods
     fetchTables = () => {
-        getList("/tables")
+        getObject("/tables")
             .then((json) => {
                 if (this._isMounted) {
                     this.setState(() => {
@@ -54,7 +55,7 @@ class App extends Component {
     }
 
     fetchMenu = () => {
-        getList("/items")
+        getObject("/items")
             .then((json) => {
                 if (this._isMounted) {
                     this.setState(() => {

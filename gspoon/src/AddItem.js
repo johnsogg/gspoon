@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
+// AddItem is a component used to present a grid of menu items and allow 
+// the user to pick one of them to add to the current check.
 class AddItem extends Component {
     // -------------------------------------------------------------------------------- Constructor & Render
     constructor(props) {
@@ -27,10 +29,6 @@ class AddItem extends Component {
     componentWillUnmount() {
         this._isMounted = false;
     }
-
-    // -------------------------------------------------------------------------------- Data methods
-
-    // -------------------------------------------------------------------------------- Event handler methods
 
     // -------------------------------------------------------------------------------- Helpers
 

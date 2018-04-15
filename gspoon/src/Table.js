@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { getList, postData, putData } from './api';
+import { getObject, postData, putData } from './api';
 import Check from './Check';
 import ReviewCheck from './ReviewCheck';
 import { Button } from 'reactstrap';
 
-
+// Table is used as the main page for a single table's data and activities.
+// From here it will show an open check (if there is one), let you look at
+// a list of closed checks, let you open a new check (if there isn't an
+// open one right now), and close the current open check.
 class Table extends Component {
 
     // -------------------------------------------------------------------------------- Constructor & Render    
@@ -98,7 +101,7 @@ class Table extends Component {
     }
 
     fetchChecks = () => {
-        getList("/checks")
+        getObject("/checks")
             .then((json) => {
                 const myChecks = json.filter((c) => { return c.tableId === this.props.table.id; });
                 this.fetchCheck(myChecks);

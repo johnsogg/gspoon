@@ -4,6 +4,9 @@ import { getObject } from './api';
 import moment from 'moment'
 import { Button } from 'reactstrap';
 
+// ReviewCheck is a component that shows the date and total for a 
+// closed out check. If activated it will trigger an action that 
+// should bring up details.
 class ReviewCheck extends Component {
 
     // -------------------------------------------------------------------------------- Constructor & Render    
@@ -47,18 +50,7 @@ class ReviewCheck extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
-    }
-
-    // -------------------------------------------------------------------------------- Data methods
-
-    
-
-    // -------------------------------------------------------------------------------- Helpers
-
-
-
-    // -------------------------------------------------------------------------------- Event handler methods
-    
+    }    
 
 }
 
