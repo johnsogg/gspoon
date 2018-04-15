@@ -86,10 +86,23 @@ Starting at the top!
 
 The styling part could take a while, so I'll probably just time-box it and call it done when the timer goes off.
 
-Time so far: 11h:40m
-
 **Saturday 10am** Use `price.toFixed(2)` to format price, and installed `moment.js` to handle date formatting. Yarn is nice. Now "just" need to do styling, cleanup, document, and then ship it!
 
 **Saturday 2pm** Installed `reactstrap`, got it configured (needed to add references to various files, wasn't obvious what exactly to do from the onset). Now rendering table buttons using bootstrap, and have a bunch of space so the server's thumb can reach the buttons. Moving on to style the other stuff, should be smooth sailing now that I've figured out which way is up.
 
 **Saturday 3:45pm** The order entry area looks decent by now. They're bootstrap buttons, but changed the style so they look like plain text. When tapped the `danger` style kicks in and it glows red, because you just voided that item. Only a little bit more to do for styling. Need to make voided items look good.
+
+**Saturday 3:50pm** OK that was easy. I'm basically done with meeting the spec and having a not-totally-bad UX. Here's some stuff that I could address next, if I kept going:
+
+- If you load a table that doesn't have an open check, the options are 'review N past checks' and 'New Check'. They are too far from the user's thumb.
+- Same thing with the `< Back` button at the top.
+- The closed check review UI doesn't show the table/date/time, but it should.
+
+**Saturday 8:00pm** Added an autoscroll so when you add items that overloads the list o' ordered items it will scroll to the bottom of that list.
+
+Time so far: 13h:40m
+
+## Some final screenshots
+
+<img src="img/gspoon-1-tables.png" style="border-style: solid; border-width: 2px;" /> <img src="img/gspoon-2-new-check.png" style="border-style: solid; border-width: 2px;" /> 
+<img src="img/gspoon-3-blank-check.png" style="border-style: solid; border-width: 2px;" /> <img src="img/gspoon-4-some-items.png" style="border-style: solid; border-width: 2px;" /> <img src="img/gspoon-5-many-items.png" style="border-style: solid; border-width: 2px;" /> <img src="img/gspoon-6-closed-check-list.png" style="border-style: solid; border-width: 2px;" /> <img src="img/gspoon-7-closed-check-detail.png" style="border-style: solid; border-width: 2px;" /><br />
