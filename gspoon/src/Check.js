@@ -21,7 +21,7 @@ class Check extends Component {
                 {this.renderOrderSubtotal()}
                 {this.hasAllData()
                     ? this.renderItems(this.state.details.orderedItems)
-                    : <p>No items yet</p>
+                    : <div id="orderedItems" className="orderList"><p>No items yet</p></div>
                 }
                 {
                     this.state.details && !this.state.details.closed && <AddItems menu={this.props.menu} handleAddItem={this.handleAddItem} />
@@ -55,7 +55,7 @@ class Check extends Component {
             });
 
         return (
-            <div className="orderList">
+            <div id="orderedItems" className="orderList">
                 {items}
             </div>
         );
@@ -82,6 +82,11 @@ class Check extends Component {
         return (this.state.details && this.state.details.closed
             ? "checkClosed"
             : "checkOpen");
+    }
+
+    scrollItemListToBottom = () => {
+        const objDiv = document.getElementById("orderedItems");
+        objDiv.scrollTop = objDiv.scrollHeight;
     }
 
     // -------------------------------------------------------------------------------- Lifecycle methods
@@ -117,7 +122,7 @@ class Check extends Component {
                         return {
                             details: prevDetails
                         }
-                    });
+                    }, this.scrollItemListToBottom);
                 }
             });
     }

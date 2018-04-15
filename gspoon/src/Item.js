@@ -25,7 +25,7 @@ class Item extends Component {
             solid: true,
             transparent: true,
             color: '#a0a0a0',
-            'text-decoration': 'line-through'
+            textDecoration: 'line-through'
         }
         return (
             <div>

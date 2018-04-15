@@ -51,7 +51,7 @@ class AddItem extends Component {
                     menu
                         .slice(i, i+numCols)
                         .map((menuItem) => {
-                            return <div className="col">{this.makeItemButton(menuItem)}</div>
+                            return <div key={menuItem.id} className="col">{this.makeItemButton(menuItem)}</div>
                         })
                 }
                 </div>

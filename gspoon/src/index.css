@@ -9,10 +9,6 @@ body {
 }
 
 .checkOpen {
-    border-width: 2px;
-    border-color: greenyellow;
-    border-style: solid;
-
 }
 
 .checkClosed {
@@ -37,5 +33,5 @@ body {
 
 .orderList {
     overflow-y: scroll;
-    height: 240px;
+    height: 170px;
 }
