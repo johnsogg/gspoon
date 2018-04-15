@@ -162,7 +162,6 @@ class Table extends Component {
 
     handleShowOldCheck = (evt, check) => {
         evt.preventDefault();
-        console.log("ok show old check", check);
         if (this._isMounted) {
             this.setState(() => { 
                 return {

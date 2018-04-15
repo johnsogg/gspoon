@@ -81,7 +81,7 @@ class Check extends Component {
     checkStyle = () => {
         return (this.state.details && this.state.details.closed
             ? "checkClosed"
-            : "checkOpen");
+            : "");
     }
 
     scrollItemListToBottom = () => {
@@ -149,7 +149,10 @@ class Check extends Component {
     }
 
     maybeVoid = (evt, orderedItemId) => {
-        evt.preventDefault();
+        evt.preventDefault();  
+        if (this.props.check.closed) {
+            return; // can't void items on closed checks, yo.
+        }
 
         const msg = {
             'orderedItemId': orderedItemId
